@@ -89,12 +89,12 @@ $RunScript = @"
 title NYPD Contract Monitor
 echo =====================================
 echo   NYPD Contract Monitor
-echo   Dashboard: http://localhost:8080
+echo   Dashboard: http://localhost:8200
 echo   Press Ctrl+C to stop
 echo =====================================
 echo.
-start http://localhost:8080
-"$InstallDir\venv\Scripts\contract-monitor.exe" --serve --port 8080
+start http://localhost:8200
+"$InstallDir\venv\Scripts\contract-monitor.exe" --serve --port 8200
 pause
 "@
 Set-Content -Path "$InstallDir\run.bat" -Value $RunScript
@@ -110,7 +110,7 @@ $Shortcut.Save()
 # Create Windows Task Scheduler entry (optional background service)
 $CreateTask = Read-Host "Create a scheduled task to run on login? (y/n)"
 if ($CreateTask -eq 'y') {
-    $Action = New-ScheduledTaskAction -Execute "$InstallDir\venv\Scripts\contract-monitor.exe" -Argument "--serve --port 8080" -WorkingDirectory $InstallDir
+    $Action = New-ScheduledTaskAction -Execute "$InstallDir\venv\Scripts\contract-monitor.exe" -Argument "--serve --port 8200" -WorkingDirectory $InstallDir
     $Trigger = New-ScheduledTaskTrigger -AtLogOn
     $Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1)
     Register-ScheduledTask -TaskName "NYPD Contract Monitor" -Action $Action -Trigger $Trigger -Settings $Settings -Description "Monitors NYC contract sites for NYPD contracts" -Force
@@ -123,7 +123,7 @@ Write-Host "  Installation complete!" -ForegroundColor Green
 Write-Host "=====================================" -ForegroundColor Green
 Write-Host ""
 Write-Host "To start: double-click 'NYPD Contract Monitor' on your Desktop" -ForegroundColor White
-Write-Host "Dashboard: http://localhost:8080" -ForegroundColor White
+Write-Host "Dashboard: http://localhost:8200" -ForegroundColor White
 Write-Host ""
 Write-Host "Config file: $InstallDir\.env" -ForegroundColor Gray
 Write-Host "  - Set SMTP_* vars for email alerts" -ForegroundColor Gray

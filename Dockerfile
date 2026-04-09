@@ -22,6 +22,6 @@ RUN cd frontend && npm install && npm run build
 # Copy env example
 COPY .env.example .env.example
 
-EXPOSE 8080
+EXPOSE 8200
 
-CMD ["contract-monitor", "--serve", "--port", "8080"]
+CMD ["contract-monitor", "--serve", "--port", "8200"]

@@ -43,8 +43,8 @@ def main():
     parser.add_argument(
         "--port",
         type=int,
-        default=8000,
-        help="Web dashboard port (default: 8000)",
+        default=8200,
+        help="Web dashboard port (default: 8200)",
     )
     args = parser.parse_args()
 
