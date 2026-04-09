@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.env
+seen_contracts.json
+frontend/node_modules/
+frontend/dist/
+venv/
+.venv/
+*.egg

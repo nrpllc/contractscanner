@@ -1,0 +1,16 @@
+services:
+  monitor:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    volumes:
+      - contract-data:/app/data
+    environment:
+      - STATE_FILE=/app/data/seen_contracts.json
+      - SCAN_INTERVAL_MINUTES=30
+    restart: unless-stopped
+
+volumes:
+  contract-data:
